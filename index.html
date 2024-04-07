@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="try1.css">
+
+    <title>CASLONEL</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    
+    
+    <header>
+        <a href="#" class="logo">Caslo<span class="Blue">nel</span></a>
+        <nav class="navbar">
+             <a href="#about">About Us</a>
+             <a href="#experience">Stations</a>
+             <a href="#activities">Activities</a>
+             <a href="#contact">Contact</a>
+
+        </nav>
+        <div class="icons">
+            <a href="https://discord.com/channels/@me/786209347360784414" class="fa-brands fa-discord" id="menu-bars"></a></i>
+            <a href="https://www.facebook.com/donald.mascarenas.94/" class="fa-brands fa-facebook" id="search-icon"></a></i>
+            <a href="https://www.tiktok.com/@kashuma4?lang=en" class="fa-brands fa-tiktok" id="search-icon"></a></i>
+        </div>
+    </header>
+
+
+<!---------------SEARCH BAR------------>
+
+<title>Custom Search Bar with Map and Image</title>
+    <style>
+        /* CSS styles go here */
+       
+        
+
+        #searchContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        #searchButton {
+            padding: 8px 16px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #searchResults {
+            border: 1px solid #ccc;
+            background-color: #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: left;
+            font-size: 20px;
+        }
+
+        #searchResults div {
+            margin-bottom: 10px;
+        }
+
+        #searchResults h3 {
+            margin-bottom: 5px;
+        }
+
+        #searchResults p {
+            margin: 0;
+        }
+
+        .map {
+            height: 200px;
+            margin-top: 10px;
+        }
+
+        .result-image {
+            max-width: 50%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="Enter your search query">
+        <button id="searchButton" onclick="search()">Search</button>
+    </div>
+    <div id="searchResults"></div>
+
+    <script>
+        // Define your custom data with map coordinates and image URLs
+        var customData = [
+            { title: "Adong", content: "Pogi", coordinates: { lat: 14.657590129404968, lng: 120.9842817807458 }, image: "https://via.placeholder.com/150" },
+            { title: "Location 2", content: "This is the content of location 2.", coordinates: { lat: 34.0522, lng: -118.2437 }, image: "https://via.placeholder.com/150" },
+          
+            // Add more items as needed
+        ];
+
+        function search() {
+            // Clear previous search results
+            document.getElementById('searchResults').innerHTML = '';
+
+            // Get the search query from the input field
+            var query = document.getElementById('searchInput').value.toLowerCase();
+
+            // Filter data based on the search query
+            var filteredData = customData.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.content.toLowerCase().includes(query)
+            );
+
+            // Display search results
+            var searchResults = document.getElementById('searchResults');
+            if (filteredData.length === 0) {
+                searchResults.innerHTML = '<p>No results found.</p>';
+            } else {
+                filteredData.forEach(item => {
+                    var resultDiv = document.createElement('div');
+                    resultDiv.innerHTML = '<h3>' + item.title + '</h3>' +
+                        '<img class="result-image" src="' + item.image + '" alt="Image">' +
+                        '<p>' + item.content + '</p>' +
+                        '<div class="map" id="map_' + item.title.replace(/\s/g, '_') + '"></div>'; // Add a div for each map with a unique ID
+                    searchResults.appendChild(resultDiv);
+
+                    // Display map for this result
+                    initMap(item.coordinates, 'map_' + item.title.replace(/\s/g, '_'));
+                });
+            }
+        }
+
+        function initMap(coordinates, mapId) {
+            // Create a map centered at the specified coordinates
+            var map = new google.maps.Map(document.getElementById(mapId), {
+                zoom: 12,
+                center: coordinates
+            });
+
+            // Add a marker for the specified location
+            new google.maps.Marker({
+                position: coordinates,
+                map: map,
+                title: 'Location'
+            });
+        }
+    </script>
+
+<script  async defer></script>
+
+<title>Search Results with Embedded Map</title>
+<style>
+  /* CSS for search results and map layout */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  .search-results {
+    display: none; /* Initially hide the search results */
+    flex: 1;
+  }
+  .map-container {
+    flex: 1;
+    width: 100%;
+    height: 400px; /* Set map height */
+  }
+  .result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer to indicate clickable element */
+  }
+  .result img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Enter your search query">
+      <button onclick="performSearch()">Search</button>
+    </div>
+    <!-- Search results container -->
+    <div class="search-results" id="searchResultsContainer">
+      <h2>Search Results</h2>
+      <div id="searchResultsList"></div>
+    </div>
+    <!-- Map container -->
+    <div class="map-container">
+      <!-- Embed the map from Google Maps -->
+      <iframe id="map" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1588765.2924481026!2d-119.81505329729042!3d36.92690894771156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbdc1e97e3169%3A0x54b7c7999c37d474!2sCalifornia%2C%20USA!5e0!3m2!1sen!2suk!4v1648679860113!5m2!1sen!2suk"></iframe>
+    </div>
+  </div>
+
+  <script>
+    var map;
+
+    // Function to perform search
+    function performSearch() {
+      var query = document.getElementById('searchInput').value;
+      // Simulated search results data (replace with actual search logic)
+      var results = [
+        {name: 'adong', content: "pogi", image: '\Documents\HTML\img\Gala.jpg', lat: 0, lng: 0},
+        {name: 'Result 2', image: 'https://via.placeholder.com/50', lat: 1, lng: 1},
+        // Add more search results as needed
+      ];
+
+      // Update search results list
+      var searchResultsList = document.getElementById('searchResultsList');
+      searchResultsList.innerHTML = ''; // Clear previous results
+      results.forEach(function(result) {
+        var resultElement = document.createElement('div');
+        resultElement.classList.add('result');
+
+        var img = document.createElement('img');
+        img.src = result.image;
+        resultElement.appendChild(img);
+
+        var nameElement = document.createElement('div');
+        nameElement.textContent = result.name;
+        resultElement.appendChild(nameElement);
+
+        searchResultsList.appendChild(resultElement);
+
+        // Add click event listener to update map when result is clicked
+        resultElement.addEventListener('click', function() {
+          updateMap(result.lat, result.lng);
+        });
+      });
+
+      // Show search results container
+      document.getElementById('searchResultsContainer').style.display = 'block';
+    }
+
+    // Function to update map location
+    function updateMap(lat, lng) {
+      if (!map) {
+        map = document.getElementById('map');
+      }
+      map.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1588765.2924481026!2d-119.81505329729042!3d36.92690894771156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbdc1e97e3169%3A0x54b7c7999c37d474!2sCalifornia%2C%20USA!5e0!3m2!1sen!2suk!4v1648679860113!5m2!1sen!2suk';
+      map.src += '&q=' + lat + ',' + lng; // Append latitude and longitude to the map URL
+    }
+
+    // Example usage: Perform search when the page loads
+    window.onload = function() {
+      // No need to perform an initial search here since search results are hidden initially
+    };
+  </script>
+
+
+ <!-- -------------- ABOUT BOX ---------------- -->
+ <section class="section" id="about">
+    <div class="top-header">
+      <h1>About US</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+          <div class="about-info">
+              <h3>My introduction</h3>
+              <p>Caslonel is an guide for commuters that use LRT1 to travel. Caslonel will give information to 
+                commuters to follow for them to be able to get to their designated destination of choice. Caslonel
+                will provide the following information such as Station to go, Estimated travel time, Price,
+                Nearby Landmarks and many more.
+              </p>
+
+          </div>
+      </div>
+      
+      
+ </section>
+
+<!-- -------------- STATIONS ---------------- -->
+
+<h1 class="title">Stations</h1>
+
+<title>LRT 1 Fare and Route Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        font-size: 32px;
+        color: #dfcdcd;
+    }
+
+    div {
+        margin-bottom: 10px;
+    }
+
+    select {
+        font-size: 25px;
+        color: #555;
+        background-color: #fff;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .routeBox {
+        border: 5px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+        font-size: 30px;
+    }
+</style>
+
+
+<h2>LRT 1 Fare and Route Calculator</h2>
+
+<h2>Current Station</h2>
+<div>
+
+    <label for="originStation"></label>
+    <select id="originStation">
+        <option value="Baclaran">Baclaran</option>
+        <option value="EDSA">EDSA</option>
+        <option value="Libertad">Libertad</option>
+        <option value="Gil Puyat">Gil Puyat</option>
+        <option value="Vito Cruz">Vito Cruz</option>
+        <option value="Quirino">Quirino</option>
+        <option value="Pedro Gil">Pedro Gil</option>
+        <option value="UN Avenue">UN Avenue</option>
+        <option value="Central Terminal">Central Terminal</option>
+        <option value="Carriedo">Carriedo</option>
+        <option value="Doroteo Jose">Doroteo Jose</option>
+        <option value="Bambang">Bambang</option>
+        <option value="Tayuman">Tayuman</option>
+        <option value="Blumentritt">Blumentritt</option>
+        <option value="Abad Santos">Abad Santos</option>
+        <option value="R. Papa">R. Papa</option>
+        <option value="5th Avenue">5th Avenue</option>
+        <option value="Monumento">Monumento</option>
+    </select>
+</div>
+
+<h2>Designated Station</h2>
+
+<div>
+    <label for="destinationStation"></label>
+    <select id="destinationStation">
+        <option value="Baclaran">Baclaran</option>
+        <option value="EDSA">EDSA</option>
+        <option value="Libertad">Libertad</option>
+        <option value="Gil Puyat">Gil Puyat</option>
+        <option value="Vito Cruz">Vito Cruz</option>
+        <option value="Quirino">Quirino</option>
+        <option value="Pedro Gil">Pedro Gil</option>
+        <option value="UN Avenue">UN Avenue</option>
+        <option value="Central Terminal">Central Terminal</option>
+        <option value="Carriedo">Carriedo</option>
+        <option value="Doroteo Jose">Doroteo Jose</option>
+        <option value="Bambang">Bambang</option>
+        <option value="Tayuman">Tayuman</option>
+        <option value="Blumentritt">Blumentritt</option>
+        <option value="Abad Santos">Abad Santos</option>
+        <option value="R. Papa">R. Papa</option>
+        <option value="5th Avenue">5th Avenue</option>
+        <option value="Monumento">Monumento</option>
+    </select>
+</div>
+
+<button onclick="calculateRoute()">Calculate Route</button>
+
+<div class="routeBox" id="routeDetails">
+    <!-- Route details will be displayed here -->
+</div>
+
+<script>
+    function calculateRoute() {
+        var originStation = document.getElementById("originStation").value;
+        var destinationStation = document.getElementById("destinationStation").value;
+
+        // Object containing nearby landmarks for each station
+        var landmarks = {
+            "Baclaran": ["Baclaran Church", "SM Mall of Asia", "Manila Bay", "Bahay ni adong"],
+            "EDSA": ["EDSA Shrine", "SM Megamall", "Ortigas Center"],
+            "Libertad": ["Pope Pius Catholic Center", "Manila Film Center", "Cultural Center of the Philippines"],
+            "Gil Puyat": ["Manila Zoological and Botanical Garden", "Makati Central Fire Station", "Don Bosco Technical Institute"],
+            "Vito Cruz": ["De La Salle University", "Rizal Memorial Sports Complex", "Harrison Plaza"],
+            "Quirino": ["Manila Zoo", "Harrison Plaza", "Rizal Memorial Sports Complex"],
+            "Pedro Gil": ["Manila Science High School", "Philippine General Hospital", "Paco Park"],
+            "UN Avenue": ["United Nations Development Programme", "Department of Health", "Bureau of Internal Revenue"],
+            "Central Terminal": ["Philippine Postal Corporation", "National Library of the Philippines", "Manila City Hall"],
+            "Carriedo": ["Quiapo Church", "Lucky Chinatown Mall", "Santa Cruz Church"],
+            "Doroteo Jose": ["Bilibid Viejo Church", "Binondo Church", "Gota de Leche"],
+            "Bambang": ["San Sebastian Church", "Bilibid Viejo Church", "Plaza Miranda"],
+            "Tayuman": ["Dangwa Flower Market", "Divisoria", "Iglesia ni Cristo Central Temple"],
+            "Blumentritt": ["Blumentritt Market", "La Loma Cemetery", "SM City San Lazaro"],
+            "Abad Santos": ["Manila Chinese Cemetery", "Manila North Cemetery", "University of Santo Tomas"],
+            "R. Papa": ["Sto. Niño Church", "Jose Rizal University", "Jollibee Tutuban"],
+            "5th Avenue": ["Araneta Square Mall", "Victoneta Park", "C3 Events Place"],
+            "Monumento": ["Caloocan City Hall", "Bonifacio Monument", "Caloocan Sports Complex"]
+        };
+
+        // Simulate fetching route details from API
+        var routeData = {
+            fare: "₱20.00", // Placeholder fare
+            estimatedTime: "20 minutes", // Placeholder estimated time
+            nearbyLandmarks: landmarks[destinationStation] // Get nearby landmarks for the destination station
+        };
+
+        // Display route details
+        displayRouteDetails(routeData);
+    }
+
+    function displayRouteDetails(routeData) {
+        // Display route details in the routeDetails div
+        var routeDetailsDiv = document.getElementById("routeDetails");
+        routeDetailsDiv.innerHTML = `
+            <p><strong>Fare:</strong> ${routeData.fare}</p>
+            <p><strong>Estimated Time:</strong> ${routeData.estimatedTime}</p>
+            <p><strong>Nearby Landmarks:</strong></p>
+            <ul>
+                ${routeData.nearbyLandmarks.map(landmark => `<li>${landmark}</li>`).join('')}
+            </ul>
+        `;
+    }
+</script>
+
+    
+
+
+  <!-- Replace "YOUR_API_KEY" with your actual API key -->
+  <iframe src="https://www.google.com/maps/d/embed?mid=1fHDNfIuzc95jYfy5tDuCUT5hYlI&hl=en_US&ehbc=2E312F" width="1000" height="480"></iframe>
+
+
+   
+<!-------------------LANDMARKS-->
+<h1 class="title">Landmarks</h1>
+    <div class="wrapper" id="activities">
+        <div class="container">
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card">
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <h4>UN Station</h4>
+                        <p>National Museum of Natural History</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c2" >
+            <label for="c2" class="card">
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <h4>Arroceros Park</h4>
+                        <p>Central Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c3" >
+            <label for="c3" class="card">
+                <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <h4>SM Grand Central</h4>
+                        <p>Monumento Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c4" >
+            <label for="c4" class="card">
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <h4>FEU Manila</h4>
+                        <p>Doroteo Jose Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c5" >
+            <label for="c5" class="card">
+                <div class="row">
+                    <div class="icon">5</div>
+                    <div class="description">
+                        <h4>Luneta Park</h4>
+                        <p>United Nations Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c6" >
+            <label for="c6" class="card">
+                <div class="row">
+                    <div class="icon">6</div>
+                    <div class="description">
+                        <h4>Baclaran Church</h4>
+                        <p>Baclaran Station</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+  
+    <div class="wrapper" id="activities">
+        <div class="container">
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card">
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <h4>UN Station</h4>
+                        <p>National Museum of Natural History</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c2" >
+            <label for="c2" class="card">
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <h4>Arroceros Park</h4>
+                        <p>Central Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c3" >
+            <label for="c3" class="card">
+                <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <h4>SM Grand Central</h4>
+                        <p>Monumento Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c4" >
+            <label for="c4" class="card">
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <h4>FEU Manila</h4>
+                        <p>Doroteo Jose Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c5" >
+            <label for="c5" class="card">
+                <div class="row">
+                    <div class="icon">5</div>
+                    <div class="description">
+                        <h4>Luneta Park</h4>
+                        <p>United Nations Station</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c6" >
+            <label for="c6" class="card">
+                <div class="row">
+                    <div class="icon">6</div>
+                    <div class="description">
+                        <h4>Baclaran Church</h4>
+                        <p>Baclaran Station</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+
+  <!-- -------------- CONTACT BOX ---------------- -->
+
+  <section class="section" id="contact">
+    <div class="top-header">
+      <h1>Get in touch</h1>
+      <span>Do you have a project in your mind, contact me here</span>
+    </div>
+    <div class="row">
+       <div class="col">
+          <div class="contact-info">
+              <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
+              <p><i class="uil uil-envelope"></i> Email: mascarenas.donald.com</p>
+              <p><i class="uil uil-phone"></i> Tel: +250 708 770 000</p>
+          </div>
+       </div>
+       <div class="col">
+          <div class="form-control">
+              <div class="form-inputs">
+                  <input type="text" class="input-field" placeholder="Name">
+                  <input type="text" class="input-field" placeholder="Email">
+              </div>
+              <div class="text-area">
+                  <textarea placeholder="Message"></textarea>
+              </div>
+              <div class="form-button">
+                  <button class="btn">Send <i class="uil uil-message"></i></button>
+              </div>
+          </div>
+       </div>
+    </div>
+ </section>
+
+</main>
+
+ <!-- --------------- FOOTER --------------- -->
+ <footer>
+    <div class="top-footer">
+        <p>Donald.</p>
+    </div>
+    <div class="middle-footer">
+        <ul class="footer-menu">
+            <li class="footer_menu_list" id="about me">
+                <a href="#about">About me</a>
+            </li>
+            <li class="footer_menu_list" id="experience">
+                <a href="#experience">Experience</a>
+            </li>
+            <li class="footer_menu_list" id="activities">
+                <a href="#activities">Activities</a>
+            </li>
+            <li class="footer_menu_list" id="contact">
+                <a href="#contact">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <div class="footer-social-icons">
+        <div class="icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="icon"><i class="fa-brands fa-discord"></i></div>
+        <div class="icon"><i class="fa-brands fa-tiktok"></i></div>
+        <a href="#home" class="fa-solid fa-house"></a>
+    </div>
+    <div class="bottom-footer">
+        <p>Copyright &copy; <a href="#home" style="text-decoration: none;">Donald.</a> - All rights reserved</p>
+    </div>
+</footer>
+
+</div>
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="try1.js"></script>
+
+
+
+</body>
+</html>
