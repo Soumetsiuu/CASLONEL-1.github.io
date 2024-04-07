@@ -405,25 +405,27 @@
         var destinationStation = document.getElementById("destinationStation").value;
 
         // Object containing nearby landmarks for each station
-        var landmarks = {
-            "Baclaran": ["Baclaran Church", "SM Mall of Asia", "Manila Bay", "Bahay ni adong"],
-            "EDSA": ["EDSA Shrine", "SM Megamall", "Ortigas Center"],
-            "Libertad": ["Pope Pius Catholic Center", "Manila Film Center", "Cultural Center of the Philippines"],
-            "Gil Puyat": ["Manila Zoological and Botanical Garden", "Makati Central Fire Station", "Don Bosco Technical Institute"],
-            "Vito Cruz": ["De La Salle University", "Rizal Memorial Sports Complex", "Harrison Plaza"],
-            "Quirino": ["Manila Zoo", "Harrison Plaza", "Rizal Memorial Sports Complex"],
-            "Pedro Gil": ["Manila Science High School", "Philippine General Hospital", "Paco Park"],
-            "UN Avenue": ["United Nations Development Programme", "Department of Health", "Bureau of Internal Revenue"],
-            "Central Terminal": ["Philippine Postal Corporation", "National Library of the Philippines", "Manila City Hall"],
-            "Carriedo": ["Quiapo Church", "Lucky Chinatown Mall", "Santa Cruz Church"],
-            "Doroteo Jose": ["Bilibid Viejo Church", "Binondo Church", "Gota de Leche"],
-            "Bambang": ["San Sebastian Church", "Bilibid Viejo Church", "Plaza Miranda"],
-            "Tayuman": ["Dangwa Flower Market", "Divisoria", "Iglesia ni Cristo Central Temple"],
-            "Blumentritt": ["Blumentritt Market", "La Loma Cemetery", "SM City San Lazaro"],
-            "Abad Santos": ["Manila Chinese Cemetery", "Manila North Cemetery", "University of Santo Tomas"],
-            "R. Papa": ["Sto. Niño Church", "Jose Rizal University", "Jollibee Tutuban"],
-            "5th Avenue": ["Araneta Square Mall", "Victoneta Park", "C3 Events Place"],
-            "Monumento": ["Caloocan City Hall", "Bonifacio Monument", "Caloocan Sports Complex"]
+         var landmarks = {
+        "Baclaran": ["Baclaran Church", "SM Mall of Asia", "Manila Bay", "Bahay ni adong"],
+        "EDSA": ["EDSA Shrine", "SM Megamall", "Ortigas Center"],
+        "Libertad": ["Pope Pius Catholic Center", "Manila Film Center", "Cultural Center of the Philippines", "Pasay City Public Market Liberta", "Philippine National Railways Libertad Station", "EDSA Libertad Flyover", "MMetropoint Mall", "Libertad Water Tower"],
+        "Gil Puyat": ["Manila Zoological and Botanical Garden", "Makati Central Fire Station", "Don Bosco Technical Institute", "Philippine National Railways Libertad Station", "Ayala Triangle Gardens", "Makati Stock Exchange", "Makati Medical Center", "Greenbelt Chaper", "Greenbelt Mall"],
+        "Vito Cruz": ["De La Salle University", "Rizal Memorial Sports Complex", "Harrison Plaza", "The Temple of Heaven", "Cultural Center of the Philippines", "Fo Guang Shan Mabuhay Temple", "Museum of Contemporary Art and Design", "Museo San Agustin", "National Museum", "San Agustin Church", "Intramuros", "Manila Bay", "Rizal Park", "Manila Catherdral", "Rizal Shrine"],
+        "Quirino": ["Manila Zoo", "Harrison Plaza", "Rizal Memorial Sports Complex"],
+        "Pedro Gil": ["Manila Science High School", "Philippine General Hospital", "Paco Park"],
+        "UN Avenue": ["United Nations Development Programme", "Department of Health", "Bureau of Internal Revenue"],
+        "Central Terminal": ["Philippine Postal Corporation", "National Library of the Philippines", "Manila City Hall", "Fort Santiago", "Intrauros Complex", "Manila Central Post Office", "Manila City Hall", "Manila Metropolitan Theater", "National Museum of Anthropology", "National Museum of Fine Arts", "Aroceros Forest park"],
+        "Carriedo": ["Quiapo Church", "Lucky Chinatown Mall", "Santa Cruz Church", "Binondo", "Chinatown Arch", "Escolta Street", "Philippine Postal Corporation", "Plaza Lacson", "Quiapo Church"],
+        "Doroteo Jose": ["Bilibid Viejo Church", "Binondo Church", "Gota de Leche", "Bataan Transit", "Divisoria Mall", "Fabella Memorial Hospital", "Genesis Transport Service", "Isetann Cinema Recto", "Manila Grand", "Opera Hotel", "Philippine Rabbit Bus Lines"],
+        "Bambang": ["San Sebastian Church", "Plaza Miranda", "Metropolitan Medical Center", "Oriental Zen Suites - Manila"],
+        "Tayuman": ["Dangwa Flower Market", "Divisoria", "Iglesia ni Cristo Central Temple", "San Lazaro Hospital", "SM City San Lazaro", "Puregold Tayuman", "University of Santo Tomas Hospital", "Jose R. Reyes Memorial Medical Center"],
+        "Blumentritt": ["Blumentritt Market", "Winford Resort and Casino Manila", "SMDC Sun Residences"],
+        "Abad Santos": ["Manila Chinese Cemetery", "Manila North Cemetery", "University of Santo Tomas", "La Loma Baptist Church", "San Jose Manggagawa Church"],
+        "R. Papa": ["Sto. Niño Church", "Jose Rizal University", "Jollibee Tutuban", "Manila Chinese Cemetery", "San Pancracio Parish Church", "La Loma Cemetery", "St.Pancratius Chapel"],
+        "5th Avenue": ["Araneta Square Mall", "Victoneta Park", "C3 Events Place", "Thai To Taoist Temple Pagoda", "St. Peter Chapels Laloma"],
+        "Monumento": ["Caloocan City Hall", "Caloocan Sports Complex", "Andres Bonifacio National Monument", "SM City Grand Central", "Victory Central Mall Caloocan", "Diocesan Shrine and Parish of Our Lady of Grace, Caloocan", "Caloocan City Public Library", "Malabon Zoo", "Monumento Circle"],
+        "Balintawak": ["Andres Bonifacio Monument - Balintawak", "Iglesia Ni Cristo - Lokal ng North Diversion", "Balintawak Cloverleaf Park"],
+        "Fernando Poe Jr.": ["Zinnia Towers", "Cry of Pugad Lawin Park", "S & R Membership Shopping - Congressional", "Christ the King Parish Church", "SM North EDSA", "Quezon City General Hospital", "Iglesia Ni Cristo - Lokal ng Bago Bantay", "Global World Center"]
         };
 
         // Simulate fetching route details from API
