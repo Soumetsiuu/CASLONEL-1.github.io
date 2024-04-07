@@ -207,7 +207,7 @@ h3{
     height: 80px;
     width: 520px;
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateY(30px);
     transition-delay: .3s;
     transition: all .3s ease;
   }
