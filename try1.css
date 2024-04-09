@@ -161,7 +161,16 @@ h3{
     align-items: center;
     justify-content: center;
   }
-  
+  .row{
+    display: flex;
+    flex-wrap: wrap; /* Added */
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+}
+.col{
+    width: 100%; /* Updated */
+}
   .container {
     width: 100px
     height: 50px;
