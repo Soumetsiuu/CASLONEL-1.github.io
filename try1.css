@@ -168,8 +168,21 @@ h3{
     flex-wrap: nowrap;
     justify-content: start;
   }
+
+  .card-container { /* New container for layout */
+  position: relative; /* Required for absolute positioning */
+}
   
+  .card.active { /* Active card styling */
+  z-index: 1; /* Bring active card to front */
+  transform: scale(1.2); /* Zoom in on active card */
+}
+
   .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
   display: flex; /* Make cards vertical */
   flex-direction: column;
   width: 80px; /* Adjust width as needed */
