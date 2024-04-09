@@ -165,8 +165,11 @@ h3{
   .container {
     height: 400px;
     display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
     flex-wrap: nowrap;
     justify-content: start;
+    gap: 10px; /* Adjust the gap between cards */
+    padding: 0 20px; /* Optional: Add padding to the sides */
   }
 
   .card-container { /* New container for layout */
