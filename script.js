@@ -13,6 +13,17 @@ function searchFunction() {
     // Optionally, transition to the next card using logic here
   });
 });
+
+   const cardContainer = document.querySelector('.card-container');
+   const cards = cardContainer.querySelectorAll('.card');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    cards.forEach(otherCard => otherCard.classList.remove('active')); // Deactivate other cards
+    card.classList.add('active'); // Activate clicked card
+  });
+});
+    
     for (i = 0; i < li.length; i++) {
       a = li[i].getElementsByTagName("a")[0];
       txtValue = a.textContent || a.innerText;
