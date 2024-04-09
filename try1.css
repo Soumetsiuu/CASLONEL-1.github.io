@@ -170,17 +170,32 @@ h3{
   }
   
   .card {
-    width: 80px;
-    border-radius: .75rem;
-    background-size: cover;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4rem;
-    margin: 0 10px;
-    display: flex;
-    align-items: flex-end;
-    transition: .6s cubic-bezier(.28,-0.03,0,.99);
-    box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+  display: flex; /* Make cards vertical */
+  flex-direction: column;
+  width: 80px; /* Adjust width as needed */
+  margin: 0 10px; /* Optional spacing */
+  overflow: hidden; /* Prevent image overflow */
+  cursor: pointer; /* Indicate tappable element */
+  align-items: flex-end;
+  transition: .6s cubic-bezier(.28,-0.03,0,.99);
+  box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+}
+
+.card img {
+  width: 100%; /* Full image width */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.card:hover img {
+  transform: scale(1.1); /* Zoom on hover (optional) */
+}
+
+/* Optional: Styling for card content */
+.card-content {
+  padding: 10px;
+  text-align: center; /* Or adjust as needed */
+}
   }
   .card > .row {
     color: white;
