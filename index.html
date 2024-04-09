@@ -14,294 +14,91 @@
     <link rel="stylesheet" href="try1.css">
 
     <title>CASLONEL</title>
-    <link rel="stylesheet" href="styles.css">
 
-</head>
-<body>
-    
-    
-    <header>
-        <a href="#" class="logo">Caslo<span class="Blue">nel</span></a>
-        <nav class="navbar">
-             <a href="#about">About Us</a>
-             <a href="#experience">Stations</a>
-             <a href="#activities">Activities</a>
-             <a href="#contact">Contact</a>
-
-        </nav>
-        <div class="icons">
-            <a href="https://discord.com/channels/@me/786209347360784414" class="fa-brands fa-discord" id="menu-bars"></a></i>
-            <a href="https://www.facebook.com/donald.mascarenas.94/" class="fa-brands fa-facebook" id="search-icon"></a></i>
-            <a href="https://www.tiktok.com/@kashuma4?lang=en" class="fa-brands fa-tiktok" id="search-icon"></a></i>
-        </div>
-    </header>
 
 
 <!---------------SEARCH BAR------------>
 
-<title>Custom Search Bar with Map and Image</title>
-    <style>
-        /* CSS styles go here */
-       
-        
-
-        #searchContainer {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #searchInput {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 5px;
-        }
-
-        #searchButton {
-            padding: 8px 16px;
-            border: 1px solid #007bff;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        #searchResults {
-            border: 1px solid #ccc;
-            background-color: #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            text-align: left;
-            font-size: 20px;
-        }
-
-        #searchResults div {
-            margin-bottom: 10px;
-        }
-
-        #searchResults h3 {
-            margin-bottom: 5px;
-        }
-
-        #searchResults p {
-            margin: 0;
-        }
-
-        .map {
-            height: 200px;
-            margin-top: 10px;
-        }
-
-        .result-image {
-            max-width: 50%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div id="searchContainer">
-        <input type="text" id="searchInput" placeholder="Enter your search query">
-        <button id="searchButton" onclick="search()">Search</button>
-    </div>
-    <div id="searchResults"></div>
-
-    <script>
-        // Define your custom data with map coordinates and image URLs
-        var customData = [
-            { title: "Adong", content: "Pogi", coordinates: { lat: 14.657590129404968, lng: 120.9842817807458 }, image: "https://via.placeholder.com/150" },
-            { title: "Location 2", content: "This is the content of location 2.", coordinates: { lat: 34.0522, lng: -118.2437 }, image: "https://via.placeholder.com/150" },
-          
-            // Add more items as needed
-        ];
-
-        function search() {
-            // Clear previous search results
-            document.getElementById('searchResults').innerHTML = '';
-
-            // Get the search query from the input field
-            var query = document.getElementById('searchInput').value.toLowerCase();
-
-            // Filter data based on the search query
-            var filteredData = customData.filter(item =>
-                item.title.toLowerCase().includes(query) ||
-                item.content.toLowerCase().includes(query)
-            );
-
-            // Display search results
-            var searchResults = document.getElementById('searchResults');
-            if (filteredData.length === 0) {
-                searchResults.innerHTML = '<p>No results found.</p>';
-            } else {
-                filteredData.forEach(item => {
-                    var resultDiv = document.createElement('div');
-                    resultDiv.innerHTML = '<h3>' + item.title + '</h3>' +
-                        '<img class="result-image" src="' + item.image + '" alt="Image">' +
-                        '<p>' + item.content + '</p>' +
-                        '<div class="map" id="map_' + item.title.replace(/\s/g, '_') + '"></div>'; // Add a div for each map with a unique ID
-                    searchResults.appendChild(resultDiv);
-
-                    // Display map for this result
-                    initMap(item.coordinates, 'map_' + item.title.replace(/\s/g, '_'));
-                });
-            }
-        }
-
-        function initMap(coordinates, mapId) {
-            // Create a map centered at the specified coordinates
-            var map = new google.maps.Map(document.getElementById(mapId), {
-                zoom: 12,
-                center: coordinates
-            });
-
-            // Add a marker for the specified location
-            new google.maps.Marker({
-                position: coordinates,
-                map: map,
-                title: 'Location'
-            });
-        }
-    </script>
-
-<script  async defer></script>
-
-<title>Search Results with Embedded Map</title>
 <style>
-  /* CSS for search results and map layout */
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .search-bar {
-    margin-bottom: 20px;
-  }
-  .search-results {
-    display: none; /* Initially hide the search results */
-    flex: 1;
-  }
-  .map-container {
-    flex: 1;
-    width: 100%;
-    height: 400px; /* Set map height */
-  }
-  .result {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    cursor: pointer; /* Change cursor to pointer to indicate clickable element */
-  }
-  .result img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-</style>
-</head>
-<body>
-  <div class="container">
-    <!-- Search bar -->
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Enter your search query">
-      <button onclick="performSearch()">Search</button>
-    </div>
-    <!-- Search results container -->
-    <div class="search-results" id="searchResultsContainer">
-      <h2>Search Results</h2>
-      <div id="searchResultsList"></div>
-    </div>
-    <!-- Map container -->
-    <div class="map-container">
-      <!-- Embed the map from Google Maps -->
-      <iframe id="map" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1588765.2924481026!2d-119.81505329729042!3d36.92690894771156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbdc1e97e3169%3A0x54b7c7999c37d474!2sCalifornia%2C%20USA!5e0!3m2!1sen!2suk!4v1648679860113!5m2!1sen!2suk"></iframe>
-    </div>
-  </div>
+   
 
-  <script>
-    var map;
-
-    // Function to perform search
-    function performSearch() {
-      var query = document.getElementById('searchInput').value;
-      // Simulated search results data (replace with actual search logic)
-      var results = [
-        {name: 'adong', content: "pogi", image: '\Documents\HTML\img\Gala.jpg', lat: 0, lng: 0},
-        {name: 'Result 2', image: 'https://via.placeholder.com/50', lat: 1, lng: 1},
-        // Add more search results as needed
-      ];
-
-      // Update search results list
-      var searchResultsList = document.getElementById('searchResultsList');
-      searchResultsList.innerHTML = ''; // Clear previous results
-      results.forEach(function(result) {
-        var resultElement = document.createElement('div');
-        resultElement.classList.add('result');
-
-        var img = document.createElement('img');
-        img.src = result.image;
-        resultElement.appendChild(img);
-
-        var nameElement = document.createElement('div');
-        nameElement.textContent = result.name;
-        resultElement.appendChild(nameElement);
-
-        searchResultsList.appendChild(resultElement);
-
-        // Add click event listener to update map when result is clicked
-        resultElement.addEventListener('click', function() {
-          updateMap(result.lat, result.lng);
-        });
-      });
-
-      // Show search results container
-      document.getElementById('searchResultsContainer').style.display = 'block';
+    #searchContainer {
+        text-align: center;
+        margin-bottom: 20px;
     }
 
-    // Function to update map location
-    function updateMap(lat, lng) {
-      if (!map) {
-        map = document.getElementById('map');
-      }
-      map.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1588765.2924481026!2d-119.81505329729042!3d36.92690894771156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbdc1e97e3169%3A0x54b7c7999c37d474!2sCalifornia%2C%20USA!5e0!3m2!1sen!2suk!4v1648679860113!5m2!1sen!2suk';
-      map.src += '&q=' + lat + ',' + lng; // Append latitude and longitude to the map URL
+    #searchInput {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 5px;
+        width: 300px;
     }
 
-    // Example usage: Perform search when the page loads
-    window.onload = function() {
-      // No need to perform an initial search here since search results are hidden initially
-    };
-  </script>
+    #searchButton {
+        padding: 8px 16px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
 
+    #searchResults {
+        font-size: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #fff;
+        max-width: 600px;
+        margin: 0 auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
- <!-- -------------- ABOUT BOX ---------------- -->
- <section class="section" id="about">
-    <div class="top-header">
-      <h1>About US</h1>
-    </div>
-    <div class="row">
-      <div class="col">
-          <div class="about-info">
-              <h3>My introduction</h3>
-              <p>Caslonel is an guide for commuters that use LRT1 to travel. Caslonel will give information to 
-                commuters to follow for them to be able to get to their designated destination of choice. Caslonel
-                will provide the following information such as Station to go, Estimated travel time, Price,
-                Nearby Landmarks and many more.
-              </p>
+    #searchResults ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-          </div>
-      </div>
-      
-      
- </section>
+    #searchResults li {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+    }
 
-<!-- -------------- STATIONS ---------------- -->
+    #searchResults li:last-child {
+        border-bottom: none;
+    }
 
-<h1 class="title">Stations</h1>
+    .place-image {
+        max-width: 100px;
+        height: 150px;
+        margin-right: 10px;
+    }
 
-<title>LRT 1 Fare and Route Calculator</title>
-<style>
+    .map-image {
+        max-width: 400px;
+        height: auto;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .path-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .path-line {
+        position: absolute;
+        border: 2px solid red;
+        z-index: 100;
+    }
     body {
         font-family: Arial, sans-serif;
     }
@@ -310,7 +107,6 @@
         font-size: 32px;
         color: #dfcdcd;
     }
-
     div {
         margin-bottom: 10px;
     }
@@ -336,14 +132,122 @@
         background-color: #f9f9f9;
         font-size: 30px;
     }
+    .map-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; /* Adjust as needed for aspect ratio */
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 </style>
 
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Caslo<span class="Blue">nel</span></a>
+        <nav class="navbar">
+             <a href="#about">About Us</a>
+             <a href="#experience">Stations</a>
+             <a href="#activities">Activities</a>
+             <a href="#contact">Contact</a>
 
+        </nav>
+        <div class="icons">
+            <a href="https://discord.com/channels/@me/786209347360784414" class="fa-brands fa-discord" id="menu-bars"></a></i>
+            <a href="https://www.facebook.com/donald.mascarenas.94/" class="fa-brands fa-facebook" id="search-icon"></a></i>
+            <a href="https://www.tiktok.com/@kashuma4?lang=en" class="fa-brands fa-tiktok" id="search-icon"></a></i>
+        </div>
+
+
+        <!-----------Search bar--------->
+    </header>
+<div id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Search nearby places in LRT 1 stations">
+    <button id="searchButton" onclick="search()">Search</button>
+</div>
+<div id="searchResults"></div>
+
+<script src="search.js">
+</script>
+
+
+<!-----------Station choice---------->
+
+<title>LRT 1 Fare and Route Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        font-size: 32px;
+        color: #dfcdcd;
+        text-align: center;
+    }
+    .head2{
+        font-size: 32px;
+        color: #dfcdcd;
+        position: absolute;
+        margin-top: 12px;
+        right: 120px;
+    }
+    .option2{
+        position: absolute;
+        margin-top: 50px;
+        right: 205px;
+    }
+    .head1{
+        font-size: 32px;
+        color: #dfcdcd;
+        position: absolute;
+        margin-top: 12px;
+        left: 120px;
+    }
+    .option1{
+        position: absolute;
+        margin-top: 50px;
+        left: 123px;
+    }
+    div {
+        margin-bottom: 10px;
+    }
+
+    select {
+        font-size: 25px;
+        color: #555;
+        background-color: #fff;
+    }
+
+    .button1 {
+        font-size: 20px;
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-left:40%;
+    }
+
+    .routeBox {
+        border: 5px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+        font-size: 30px;
+    }
+</style>
+</head>
+<body>
 <h2>LRT 1 Fare and Route Calculator</h2>
 
-<h2>Current Station</h2>
-<div>
-
+<h2 class="head1">Current Station</h2>
+<div class="option1">
     <label for="originStation"></label>
     <select id="originStation">
         <option value="Baclaran">Baclaran</option>
@@ -367,9 +271,9 @@
     </select>
 </div>
 
-<h2>Designated Station</h2>
+<div class="head2"><b>Designated Station</b></div>
 
-<div>
+<div class="option2">
     <label for="destinationStation"></label>
     <select id="destinationStation">
         <option value="Baclaran">Baclaran</option>
@@ -392,8 +296,8 @@
         <option value="Monumento">Monumento</option>
     </select>
 </div>
-
-<button onclick="calculateRoute()">Calculate Route</button>
+<br><br><br><br><br><br><br><br><br><br><br>
+<button class="button1" onclick="calculateRoute()">Calculate Route</button>
 
 <div class="routeBox" id="routeDetails">
     <!-- Route details will be displayed here -->
@@ -408,29 +312,53 @@
         var landmarks = {
             "Baclaran": ["Baclaran Church", "SM Mall of Asia", "Manila Bay", "Bahay ni adong"],
             "EDSA": ["EDSA Shrine", "SM Megamall", "Ortigas Center"],
-            "Libertad": ["Pope Pius Catholic Center", "Manila Film Center", "Cultural Center of the Philippines"],
-            "Gil Puyat": ["Manila Zoological and Botanical Garden", "Makati Central Fire Station", "Don Bosco Technical Institute"],
-            "Vito Cruz": ["De La Salle University", "Rizal Memorial Sports Complex", "Harrison Plaza"],
+            "Libertad": ["Pope Pius Catholic Center", "Manila Film Center", "Cultural Center of the Philippines", "Pasay City Public Market Liberta", "Philippine National Railways Libertad Station", "EDSA Libertad Flyover", "MMetropoint Mall", "Libertad Water Tower"],
+            "Gil Puyat": ["Manila Zoological and Botanical Garden", "Makati Central Fire Station", "Don Bosco Technical Institute", "Philippine National Railways Libertad Station", "Ayala Triangle Gardens", "Makati Stock Exchange", "Makati Medical Center", "Greenbelt Chaper", "Greenbelt Mall"],
+            "Vito Cruz": ["De La Salle University", "Rizal Memorial Sports Complex", "Harrison Plaza", "The Temple of Heaven", "Cultural Center of the Philippines", "Fo Guang Shan Mabuhay Temple", "Museum of Contemporary Art and Design", "Museo San Agustin", "National Museum", "San Agustin Church", "Intramuros", "Manila Bay", "Rizal Park", "Manila Catherdral", "Rizal Shrine"],
             "Quirino": ["Manila Zoo", "Harrison Plaza", "Rizal Memorial Sports Complex"],
             "Pedro Gil": ["Manila Science High School", "Philippine General Hospital", "Paco Park"],
             "UN Avenue": ["United Nations Development Programme", "Department of Health", "Bureau of Internal Revenue"],
-            "Central Terminal": ["Philippine Postal Corporation", "National Library of the Philippines", "Manila City Hall"],
-            "Carriedo": ["Quiapo Church", "Lucky Chinatown Mall", "Santa Cruz Church"],
-            "Doroteo Jose": ["Bilibid Viejo Church", "Binondo Church", "Gota de Leche"],
-            "Bambang": ["San Sebastian Church", "Bilibid Viejo Church", "Plaza Miranda"],
-            "Tayuman": ["Dangwa Flower Market", "Divisoria", "Iglesia ni Cristo Central Temple"],
-            "Blumentritt": ["Blumentritt Market", "La Loma Cemetery", "SM City San Lazaro"],
-            "Abad Santos": ["Manila Chinese Cemetery", "Manila North Cemetery", "University of Santo Tomas"],
-            "R. Papa": ["Sto. Niño Church", "Jose Rizal University", "Jollibee Tutuban"],
-            "5th Avenue": ["Araneta Square Mall", "Victoneta Park", "C3 Events Place"],
-            "Monumento": ["Caloocan City Hall", "Bonifacio Monument", "Caloocan Sports Complex"]
+            "Central Terminal": ["Philippine Postal Corporation", "National Library of the Philippines", "Manila City Hall", "Fort Santiago", "Intrauros Complex", "Manila Central Post Office", "Manila City Hall", "Manila Metropolitan Theater", "National Museum of Anthropology", "National Museum of Fine Arts", "Aroceros Forest park"],
+            "Carriedo": ["Quiapo Church", "Lucky Chinatown Mall", "Santa Cruz Church", "Binondo", "Chinatown Arch", "Escolta Street", "Philippine Postal Corporation", "Plaza Lacson", "Quiapo Church"],
+            "Doroteo Jose": ["Bilibid Viejo Church", "Binondo Church", "Gota de Leche", "Bataan Transit", "Divisoria Mall", "Fabella Memorial Hospital", "Genesis Transport Service", "Isetann Cinema Recto", "Manila Grand", "Opera Hotel", "Philippine Rabbit Bus Lines"],
+            "Bambang": ["San Sebastian Church", "Plaza Miranda", "Metropolitan Medical Center", "Oriental Zen Suites - Manila"],
+            "Tayuman": ["Dangwa Flower Market", "Divisoria", "Iglesia ni Cristo Central Temple", "San Lazaro Hospital", "SM City San Lazaro", "Puregold Tayuman", "University of Santo Tomas Hospital", "Jose R. Reyes Memorial Medical Center"],
+            "Blumentritt": ["Blumentritt Market", "Winford Resort and Casino Manila", "SMDC Sun Residences"],
+            "Abad Santos": ["Manila Chinese Cemetery", "Manila North Cemetery", "University of Santo Tomas", "La Loma Baptist Church", "San Jose Manggagawa Church"],
+            "R. Papa": ["Sto. Niño Church", "Jose Rizal University", "Jollibee Tutuban", "Manila Chinese Cemetery", "San Pancracio Parish Church", "La Loma Cemetery", "St.Pancratius Chapel"],
+            "5th Avenue": ["Araneta Square Mall", "Victoneta Park", "C3 Events Place", "Thai To Taoist Temple Pagoda", "St. Peter Chapels Laloma"],
+            "Monumento": ["Caloocan City Hall", "Caloocan Sports Complex", "Andres Bonifacio National Monument", "SM City Grand Central", "Victory Central Mall Caloocan", "Diocesan Shrine and Parish of Our Lady of Grace, Caloocan", "Caloocan City Public Library", "Malabon Zoo", "Monumento Circle"],
+            "Balintawak": ["Andres Bonifacio Monument - Balintawak", "Iglesia Ni Cristo - Lokal ng North Diversion", "Balintawak Cloverleaf Park"],
+            "Fernando Poe Jr.": ["Zinnia Towers", "Cry of Pugad Lawin Park", "S & R Membership Shopping - Congressional", "Christ the King Parish Church", "SM North EDSA", "Quezon City General Hospital", "Iglesia Ni Cristo - Lokal ng Bago Bantay", "Global World Center"]
+        };
+
+        // Fare price and estimated time for each station
+        var fareData = {
+            "Baclaran": {fare: "₱20.00", estimatedTime: "20 minutes"},
+            "EDSA": {fare: "₱25.00", estimatedTime: "25 minutes"},
+            "Libertad": {fare: "₱30.00", estimatedTime: "30 minutes"},
+            "Gil Puyat": {fare: "₱35.00", estimatedTime: "35 minutes"},
+            "Vito Cruz": {fare: "₱40.00", estimatedTime: "40 minutes"},
+            "Quirino": {fare: "₱45.00", estimatedTime: "45 minutes"},
+            "Pedro Gil": {fare: "₱50.00", estimatedTime: "50 minutes"},
+            "UN Avenue": {fare: "₱55.00", estimatedTime: "55 minutes"},
+            "Central Terminal": {fare: "₱60.00", estimatedTime: "60 minutes"},
+            "Carriedo": {fare: "₱65.00", estimatedTime: "65 minutes"},
+            "Doroteo Jose": {fare: "₱70.00", estimatedTime: "70 minutes"},
+            "Bambang": {fare: "₱75.00", estimatedTime: "75 minutes"},
+            "Tayuman": {fare: "₱80.00", estimatedTime: "80 minutes"},
+            "Blumentritt": {fare: "₱85.00", estimatedTime: "85 minutes"},
+            "Abad Santos": {fare: "₱90.00", estimatedTime: "90 minutes"},
+            "R. Papa": {fare: "₱95.00", estimatedTime: "95 minutes"},
+            "5th Avenue": {fare: "₱100.00", estimatedTime: "100 minutes"},
+            "Monumento": {fare: "₱105.00", estimatedTime: "105 minutes"}
         };
 
         // Simulate fetching route details from API
         var routeData = {
-            fare: "₱20.00", // Placeholder fare
-            estimatedTime: "20 minutes", // Placeholder estimated time
-            nearbyLandmarks: landmarks[destinationStation] // Get nearby landmarks for the destination station
+            fare: fareData[destinationStation].fare,
+            estimatedTime: fareData[destinationStation].estimatedTime,
+            nearbyLandmarks: landmarks[destinationStation]
         };
 
         // Display route details
@@ -450,6 +378,8 @@
         `;
     }
 </script>
+
+
 
     
 
