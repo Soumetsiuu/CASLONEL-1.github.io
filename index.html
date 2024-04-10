@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script>window.ENV_VARIABLE = 'developer.here.com'</script>
+    <script src='../iframeheight.js'></script>
 
+    
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
     
@@ -455,7 +466,7 @@ function search() {
 
 
   <!-- Replace "YOUR_API_KEY" with your actual API key -->
-  <iframe src="https://www.google.com/maps/d/embed?mid=1fHDNfIuzc95jYfy5tDuCUT5hYlI&hl=en_US&ehbc=2E312F" class="center" width="1500" height="480"></iframe>
+  <div id="mapContainer" style="width: 100%; height: 800px;"></div>
 
 
    
