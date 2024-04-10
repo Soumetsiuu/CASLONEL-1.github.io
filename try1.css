@@ -158,6 +158,7 @@ h3{
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  border-radius: 10px; /* This will create a 10px rounded corner, giving a feathered effect */
 }
 
   /*landmarks*/
