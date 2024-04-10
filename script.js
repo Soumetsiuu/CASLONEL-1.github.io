@@ -1,5 +1,3 @@
-
-
 var nearbyPlaces = [
     { 
         name: "Baclaran Church", 
@@ -66,8 +64,10 @@ function search() {
             pathLine.style.height = mapHeight + 'px';
             pathLine.style.clipPath = 'polygon(' + path + ')';
         }
-        
-        // Initialize the platform object:
+    });
+}
+
+// Initialize the platform object:
 var platform = new H.service.Platform({
     apikey: 'aDtX3ibjZWvKSICCzDEfFgA-ypVZ2gAQBiHCrl4v1Tw'
 });
@@ -120,6 +120,4 @@ stations.forEach(function (station) {
     var marker = new H.map.Marker(station.coords);
     // Add the marker to the map
     map.addObject(marker);
-    
-    });
-}
+});
