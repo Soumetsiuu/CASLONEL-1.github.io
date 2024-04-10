@@ -153,11 +153,12 @@ h3{
     color:black;
   }
 /*E*/
- #mapContainer {
+#mapContainer {
     width: 100%;
-    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
     background: grey;
-  border-radius: 10px; /* This will create a 10px rounded corner, giving a feathered effect */
+    border-radius: 10px; /* This will create a 10px rounded corner, giving a feathered effect */
 }
 
   /*landmarks*/
