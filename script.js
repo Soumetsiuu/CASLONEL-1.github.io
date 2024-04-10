@@ -66,5 +66,60 @@ function search() {
             pathLine.style.height = mapHeight + 'px';
             pathLine.style.clipPath = 'polygon(' + path + ')';
         }
+        
+        // Initialize the platform object:
+var platform = new H.service.Platform({
+    apikey: 'aDtX3ibjZWvKSICCzDEfFgA-ypVZ2gAQBiHCrl4v1Tw'
+});
+
+// Obtain the default map types from the platform object
+var defaultLayers = platform.createDefaultLayers();
+
+// Instantiate (and display) a map object:
+var map = new H.Map(
+    document.getElementById('mapContainer'),
+    defaultLayers.vector.normal.map,
+    {
+        zoom: 12.5,
+        center: { lat: 14.5995, lng: 120.9842 } // Centered around Manila
+    });
+
+// Add basic event listeners for map zooming and panning
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// Add basic UI controls
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+// Define LRT-1 stations with their coordinates
+var stations = [
+    { name: 'Baclaran', coords: { lat: 14.5342, lng: 120.9983 } },
+    { name: 'EDSA', coords: { lat: 14.5387, lng: 121.0007 } },
+    { name: 'Libertad', coords: { lat: 14.5477, lng: 120.9986 } },
+    { name: 'Gil Puyat', coords: { lat: 14.5543, lng: 120.9971 } },
+    { name: 'Vito Cruz', coords: { lat: 14.5634, lng: 120.9948 } },
+    { name: 'Quirino', coords: { lat: 14.5703, lng: 120.9915 } },
+    { name: 'Pedro Gil', coords: { lat: 14.5765, lng: 120.988 } },
+    { name: 'UN Avenue', coords: { lat: 14.5824, lng: 120.9847 } },
+    { name: 'Central Terminal', coords: { lat: 14.5927, lng: 120.9816 } },
+    { name: 'Carriedo', coords: { lat: 14.5989, lng: 120.9813 } },
+    { name: 'Doroteo Jose', coords: { lat: 14.6053, lng: 120.982 } },
+    { name: 'Bambang', coords: { lat: 14.6112, lng: 120.9825 } },
+    { name: 'Tayuman', coords: { lat: 14.6166, lng: 120.9827 } },
+    { name: 'Blumentritt', coords: { lat: 14.6226, lng: 120.9836 } },
+    { name: 'Abad Santos', coords: { lat: 14.6306, lng: 120.9814 } },
+    { name: 'R. Papa', coords: { lat: 14.6361, lng: 120.9823 } },
+    { name: '5th Avenue', coords: { lat: 14.6443, lng: 120.9836 } },
+    { name: 'Monumento', coords: { lat: 14.6542, lng: 120.9838 } },
+    { name: 'Balintawak', coords: { lat: 14.6574, lng: 121.0037 } },
+    { name: 'Roosevelt', coords: { lat: 14.6575, lng: 121.0211 } }
+];
+
+// Add markers for each LRT-1 station
+stations.forEach(function (station) {
+    // Create a marker
+    var marker = new H.map.Marker(station.coords);
+    // Add the marker to the map
+    map.addObject(marker);
+    
     });
 }
